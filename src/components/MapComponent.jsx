@@ -7,7 +7,7 @@ import DeckGL from '@deck.gl/react';
 import {ContourLayer} from '@deck.gl/aggregation-layers';
 import NavBar from './NavBar';
 const DATA_URL =
-  'src/utils/simulated_data.json' // eslint-disable-line
+  '/simulated_data.json' // eslint-disable-line
 
 
 const INITIAL_VIEW_STATE = {
