@@ -1,4 +1,3 @@
-// AboutModal.tsx
 import React from "react";
 import Modal from "react-modal";
 
@@ -12,15 +11,59 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onRequestClose }) => (
     isOpen={isOpen}
     onRequestClose={onRequestClose}
     contentLabel="About Modal"
+    style={{
+      overlay: {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.25)",
+      },
+      content: {
+        position: "absolute",
+        left: "21%",
+        right: "20%",
+        border: "1px solid #ccc",
+        background: "#fff",
+        overflow: "auto",
+        WebkitOverflowScrolling: "touch",
+        borderRadius: "4px",
+        outline: "none",
+        // padding: "10%",
+      },
+    }}
   >
-    <div className="modal-content">
-      <div className="modal-header">
-        <h4 className="modal-title">About the Data</h4>
-        <button type="button" className="close" onClick={onRequestClose}>
+    <div className="modal-content" style={{ overflow: "hidden" }}>
+      <div
+        className="modal-header"
+        style={{
+          display: "flex",
+
+          justifyContent: "space-between",
+          color: "black",
+        }}
+      >
+        <h4 className="modal-title" style={{ fontSize: 20 }}>
+          About the Data
+        </h4>
+        <button
+          style={{
+            backgroundColor: "transparent",
+            color: "#333", // Gray but almost black
+            fontSize: "25px",
+            border: "none",
+            cursor: "pointer",
+          }}
+          type="button"
+          className="modal-close-btn"
+          onClick={onRequestClose}
+        >
           &times;
         </button>
       </div>
-      <div className="modal-body">
+      <br style={{ backgroundColor: "black" }} />
+      <div className="modal-body" style={{ color: "black" }}>
         <h1>
           Uranium mining in Navajo Nation, Impacts on Environment and Health,
           and Geospatial Modeling
@@ -123,14 +166,16 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onRequestClose }) => (
           The critical layers (represented as raster datasets) are as follows:
         </p>
 
-        <p> &#x2022 Proximity to AUM sites</p>
-        <p> &#x2022 Proximity to roads</p>
-        <p> &#x2022 Proximity to downslope drainages from AUM sites</p>
-        <p> &#x2022 Topographic landforms</p>
-        <p> &#x2022 Wind index</p>
-        <p> &#x2022 Topographic Wind Exposure (TWE)</p>
-        <p> &#x2022 Vegetation Robustness (NDVI)</p>
-        <p> &#x2022 Groundwater contamination</p>
+        <ul>
+          <li>Proximity to AUM sites</li>
+          <li>Proximity to roads</li>
+          <li>Proximity to downslope drainages from AUM sites</li>
+          <li>Topographic landforms</li>
+          <li>Wind index</li>
+          <li>Topographic Wind Exposure (TWE)</li>
+          <li>Vegetation Robustness (NDVI)</li>
+          <li>Groundwater contamination</li>
+        </ul>
 
         <p>
           This map displays an interactive version of the combined predicted
@@ -160,6 +205,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onRequestClose }) => (
           </a>
           (twoldey94@unm.edu){" "}
         </p>
+
         <p>
           Team Member:{" "}
           <a href="https://ebrannen2390.github.io/" target="_blank">
@@ -167,6 +213,18 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onRequestClose }) => (
           </a>
           (ebrannen@unm.edu){" "}
         </p>
+
+        <p>
+          Team Member:{" "}
+          <a
+            href="https://github.com/alhridoy/navajo_mining_front_end"
+            target="_blank"
+          >
+            Al-Ekram Elahee Hridoy {" "}
+          </a>
+          (ahridoy@unm.edu){" "}
+        </p>
+
         <p>
           Team Member:{" "}
           <a href="https://maggieramirez.github.io/" target="_blank">
@@ -175,11 +233,30 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onRequestClose }) => (
           (mramirez10@unm.edu){" "}
         </p>
         <p>
+          Daniel Beene (darbeene@salud.unm.edu), Co-Investigator/Project Lead:
+          App development, data management and analysis, University of New
+          Mexico
+        </p>
+        <p>
+          Misael gared (misaelgared@gmail.com), Software Developer, Frontend
+          Developer
+        </p>
+        <p>
           Project Advisor:{" "}
           <a href="https://lipingyang.org/" target="_blank">
             Dr. Liping Yang{" "}
-          </a>{" "}
+          </a>
+          (Ph.D., Web Design Project Advisor, University of New Mexico)
           (lipingyang@unm.edu){" "}
+        </p>
+        <p>
+          Joseph Hoover, Ph.D. (jhoover@arizona.edu), Co-Investigator: Data
+          compilation and database development, University of Arizona
+        </p>
+
+        <p>
+          Manideep Potluru (mpotluru@unm.edu), Software development, University
+          of New Mexico
         </p>
 
         <p>

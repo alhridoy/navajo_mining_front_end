@@ -1,14 +1,15 @@
 import React from "react";
 
 import "leaflet/dist/leaflet.css";
-import MapComponent from "./components/MapComponent";
-import ReactDOM from "react-dom";
+import MapView  from "./components/MapComponent";
+import { createRoot } from "react-dom/client";
 // import NavBar from "./components/NavBar";
 function App() {
   React.useEffect(() => {
     const mapElement = document.getElementById("map");
     if (mapElement) {
-      ReactDOM.render(<MapComponent />, mapElement);
+      const root = createRoot(mapElement);
+      root.render(<MapView />);
     }
   }, []);
   return (
@@ -16,7 +17,7 @@ function App() {
       {/* <NavBar /> */}
       {/* <SliderBox />
       <Map /> */}
-      <MapComponent />
+      <MapView />
     </div>
   );
 }

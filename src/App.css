@@ -1,3 +1,7 @@
+body{
+  overflow: hidden;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -11,9 +15,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -24,6 +30,15 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -41,16 +56,12 @@
   color: #888;
 }
 
-
-
 #mapboxgl-children {
   height: 0%;
 }
 
 .mapboxgl-canvas-container {
-
   height: 100vh;
-
 }
 
 .fixed-nav {
@@ -59,12 +70,92 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999; /* Ensures the nav bar is above the map */
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2); /* Adjust shadow to your liking */
+  z-index: 10;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
 /* Add styles for your NavBar if not already present */
 .nav-bar {
   width: 100%;
-  background-color: #fff; /* Or any color you prefer */
+  background-color: #fff;
+}
+
+/* .map-style-selector {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 10;
+} */
+
+.map-style-selector label {
+  display: block;
+  text-align: left;
+  color: black;
+}
+
+.map-style-selector input[type="radio"] {
+  margin-right: 5px;
+}
+
+.size-slider {
+  min-width: 300px;
+  position: absolute;
+  text-align: left;
+
+  bottom: 10px;
+  /* right: 10px; */
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 10; /* Ensure it's above the map */
+  color: black;
+}
+
+.legend p{
+  margin: 0px;
+}
+/* This should set the modals UI to no scrollbar */
+.ReactModal__Overlay{
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  /* justify-self: center; */
+  /* width: 100%; */
+  background-color: transparent;
+}
+
+/* .ReactModal__Overlay--after-open{
+  background-color: transparent;
+} */
+
+/* .ReactModal__Content{
+  width: 50%;
+} */
+
+.modal-content{
+  display: block;
+  margin: 60;
+  color: black;
+}
+
+.search-results-dropdown {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
 }
