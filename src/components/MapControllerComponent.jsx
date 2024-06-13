@@ -13,8 +13,42 @@ export default function MapControllerComponent({
   exposureData,
   setExposureData,
 }) {
-  const url = "http://localhost:8000/Day1.geojson";
+  const url = "http://localhost:8000/";
+
+  let dates = [7];
+  for (let i = 0; i < 7; i++) dates[i] = i + 1 + ".geojson";
+
+  let layers = [
+    "drain",
+    "exposure",
+    "gwhi",
+    "land",
+    "ndvi",
+    "proximity",
+    "roads",
+    "twe",
+    "wi",
+  ];
+
   const [isVisible, setIsVisible] = React.useState(window.innerWidth > 768);
+  const [selectedDate, setselectedDate] = React.useState(
+    dates[new Date().getDay() - 1]
+  );
+  const [selectedLayer, setselectedLayer] = React.useState(layers[6]);
+
+  React.useEffect(() => {
+    setExposureData(url + selectedLayer + selectedDate);
+  }, [selectedDate, selectedLayer]);
+
+  const prevDay = ((new Date().getDay() - 2 + 7) % 7) + 1;
+  const nextDay = new Date().getDay() % 7;
+
+  // let DataUrlArr;
+  // for (let i = 0; i < multArrRows.length; i++) {
+  //   for (let j=0; j < multArrColumns.length; j++) {
+  //     DataUrlArr[i][j] = ("http://localhost:8000/" + multArrRows[i] + "_" + multArrColumns[j] + ".geojson");
+  //   }
+  // }
 
   const ControllerStyle = {
     position: "absolute",
@@ -112,7 +146,7 @@ export default function MapControllerComponent({
               setIsScatterPlotLayerVisible(!isScatterPlotLayerVisible)
             }
           />
-          Mines
+          Show Mines
         </label>
         <label>
           <input
@@ -120,42 +154,35 @@ export default function MapControllerComponent({
             checked={isContourLayerVisible}
             onChange={() => setIsContourLayerVisible(!isContourLayerVisible)}
           />
-          Potential Exposure
+          Show Data Layer
         </label>
-        <label>Layer Opacity: {Math.round(layerOpacity * 100) + "%"}</label>
+        <label>
+          Data Layer
+          <select
+            value={selectedLayer}
+            onChange={(e) => setselectedLayer(e.target.value)}
+            style={{ marginLeft: 5 }}
+          >
+            {layers.map((layer, index) => (
+              <option value={layer}>{layer.toUpperCase()}</option>
+            ))}
+          </select>
+        </label>
         <label>
           Day of Data
           <select
-            value={exposureData}
-            onChange={(e) => setExposureData(e.target.value)}
+            value={selectedDate}
+            onChange={(e) => setselectedDate(e.target.value)}
             style={{ marginLeft: 5 }}
           >
-            <option
-              value={url.replace(
-                "Day1.geojson",
-                `Day${new Date().getDay() - 1}.geojson`
-              )}
-            >
-              Yesterday
-            </option>
-            <option
-              value={url.replace(
-                "Day1.geojson",
-                `Day${new Date().getDay()}.geojson`
-              )}
-            >
-              Today
-            </option>
-            <option
-              value={url.replace(
-                "Day1.geojson",
-                `Day${new Date().getDay() + 1}.geojson`
-              )}
-            >
-              Tomorrow
-            </option>
+            <option value={dates[prevDay - 1]}>Yesterday</option>
+            <option value={dates[new Date().getDay() - 1]}>Today</option>
+            <option value={dates[nextDay]}>Tomorrow</option>
           </select>
         </label>
+
+        <label>Layer Opacity: {Math.round(layerOpacity * 100) + "%"}</label>
+
         <input
           type="range"
           min="0"

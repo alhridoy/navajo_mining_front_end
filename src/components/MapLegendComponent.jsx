@@ -13,7 +13,6 @@ export default function MapLegendComponent() {
     overflow: "hidden",
     backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: "5px",
-    // transition: 'max-height 0.5s ease-in-out',
     maxWidth: "300px", // Maximum width to ensure it fits on small screens
     maxHeight: isVisible ? "500px" : "0", // Control expansion
     padding: isVisible ? "10px" : "0 10px", // Padding only when visible
@@ -57,15 +56,20 @@ export default function MapLegendComponent() {
         >
           <span
             style={{
-              backgroundColor: "rgb(255, 255, 0)",
-              width: 20,
-              height: 18,
-              margin: 3,
-              marginRight: 6,
-              borderRadius: 50,
+              // backgroundColor: "rgb(0, 0, 0)",
+              width: 30,
+              height: 30,
+              marginBottom: 15,
+              marginRight: 10,
+              textAlign: "center",
+              fontSize: 30,
+              // borderRadius: 50,
+              color:"rgb(255, 255, 0)"
             }}
-          />
-          Mines (larger circle indicates bigger mine)
+          >
+            ▲
+          </span>
+          Mines
         </p>
         <div>
           {" "}

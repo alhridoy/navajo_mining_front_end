@@ -1,103 +1,7 @@
-// import React, { useState } from "react";
-// import InstructionsModal from "./InstructionsModal";
-// import AboutModal from "./AboutModal";
-
-// export default function NavBar ({ searchTerm, setSearchTerm}) {
-//   const [instructionsModalIsOpen, setInstructionsModalIsOpen] = useState(false);
-//   const [aboutModalIsOpen, setAboutModalIsOpen] = useState(false);
-//   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-//   const navStyles = {
-//     position: 'fixed',
-//     top: 0,
-//     width: '100%',
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'space-around',
-//     // padding: '1rem',
-//     backgroundColor: 'rgb(233, 191, 53)', // Brighter Yellow
-//     boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-//     zIndex: 10,
-//   };
-
-//   const linkStyles = {
-//     color: '#5a4a00', // Darker Shade for Text
-//     fontWeight: 'bold',
-//     fontSize: '1.125rem', // larger text
-//     textDecoration: 'none',
-//   };
-
-//   const actionButtonStyles = {
-//     backgroundColor: '#fff9b1', // Lighter Yellow
-//     color: '#5a4a00',
-//     borderRadius: '0.375rem',
-//     // padding: '0.5rem 1.25rem',
-//     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-//     cursor: 'pointer',
-//   };
-
-//   const actionButtonHoverStyles = {
-//     ...actionButtonStyles,
-//     backgroundColor: '#ffeb4d', // Slightly brighter on hover
-//   };
-
-//   const handleSearch = (event) => {
-//     setSearchTerm(event.target.value);
-//   };
-
-//   const toggleSidebar = () => {
-//     setIsSidebarOpen(!isSidebarOpen);
-//   };
-
-//   return (
-//     <nav style={navStyles}>
-//       <p style={{ color: "white", fontSize: 18,flex: 6}} >
-//         Potential Exposure to Abandoned Uranium Mines in Navajo Nation
-//       </p>
-//       <div style={{flex: 2}}>
-//         <input
-//           type="text"
-//           value={searchTerm}
-//           onChange={handleSearch}
-//           placeholder="Search..."
-//           style={{textAlign:"center",backgroundColor:"white",padding:10,border:0,borderRadius:10,color:"black"}}
-//         />
-//       </div>
-//       <div style={{ display: 'flex',justifyContent: "space-around",flex: 3,maxHeight: 50}}>
-//         <button
-//           style={actionButtonStyles}
-//           onMouseEnter={e => (e.currentTarget.style.backgroundColor = actionButtonHoverStyles.backgroundColor)}
-//           onMouseLeave={e => (e.currentTarget.style.backgroundColor = actionButtonStyles.backgroundColor)}
-//           onClick={() => setInstructionsModalIsOpen(true)}
-//         >
-//           Instructions
-//         </button>
-
-//         <button
-//           style={actionButtonStyles}
-//           onMouseEnter={e => (e.currentTarget.style.backgroundColor = actionButtonHoverStyles.backgroundColor)}
-//           onMouseLeave={e => (e.currentTarget.style.backgroundColor = actionButtonStyles.backgroundColor)}
-//           onClick={() => setAboutModalIsOpen(true)}
-//         >
-//           About the Data
-//         </button>
-//       </div>
-
-//       <InstructionsModal
-//         isOpen={instructionsModalIsOpen}
-//         onRequestClose={() => setInstructionsModalIsOpen(false)}
-//       />
-//       <AboutModal
-//         isOpen={aboutModalIsOpen}
-//         onRequestClose={() => setAboutModalIsOpen(false)}
-//       />
-//     </nav>
-//   );
-// };
-
 import React, { useState } from "react";
 import InstructionsModal from "./InstructionsModal";
 import AboutModal from "./AboutModal";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 export default function NavBar({ searchTerm, setSearchTerm }) {
   const [instructionsModalIsOpen, setInstructionsModalIsOpen] = useState(false);
@@ -137,6 +41,32 @@ export default function NavBar({ searchTerm, setSearchTerm }) {
   const actionButtonHoverStyles = {
     ...actionButtonStyles,
     backgroundColor: "#009999", // Slightly brighter on hover
+  };
+
+  const openSite = () => {
+    window.open("https://unmcop.unm.edu/metals/platform.html", "_blank");
+  };
+
+  const buttonStyles = {
+    display: "flex",
+    alignItems: "center",
+    padding: "10px 20px",
+    fontSize: "16px",
+    color: "white",
+    backgroundColor: "#007BFF",
+    border: "none",
+    marginRight: "10px",
+    borderRadius: "5px",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
+  };
+
+  const hoverStyles = {
+    backgroundColor: "#0056b3",
+  };
+
+  const iconStyles = {
+    marginLeft: "8px",
   };
 
   const mobileNavStyles = {
@@ -212,6 +142,23 @@ export default function NavBar({ searchTerm, setSearchTerm }) {
             onClick={() => setAboutModalIsOpen(true)}
           >
             About the Data
+          </button>
+          {/* <a href="https://unmcop.unm.edu/metals/platform.html" target="_blank" >
+            Navajo WaterGIS 2.1
+          </a> */}
+          <button
+            style={buttonStyles}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor =
+                hoverStyles.backgroundColor)
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor =
+                buttonStyles.backgroundColor)
+            }
+            onClick={openSite}
+          >
+            Navajo WaterGIS 2.1 <FaExternalLinkAlt style={iconStyles} />
           </button>
         </div>
       ) : (

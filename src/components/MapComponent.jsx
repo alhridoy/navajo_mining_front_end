@@ -12,9 +12,9 @@ import {
 import { ContourLayer } from "@deck.gl/aggregation-layers";
 import { TileLayer } from "@deck.gl/geo-layers";
 import NavBar from "./NavBar.jsx";
-import AUM from "../utils/AUM";
-import osm from "../utils/osm";
-import Slider from "./SliderBox";
+import AUM from "../utils/AUM.js";
+import osm from "../utils/osm.js";
+import Slider from "./SliderBox.jsx";
 import MapControllerComponent from "./MapControllerComponent.jsx";
 import MapLegendComponent from "./MapLegendComponent.jsx";
 
@@ -74,7 +74,9 @@ export default function App({
   const [maxSize, setMaxSize] = React.useState(initialMaxMinesize);
   const [minSqrtArea, setMinSqrtArea] = React.useState(minSize);
   const [maxSqrtArea, setMaxSqrtArea] = React.useState(maxSize);
-  const [exposureData, setExposureData] = React.useState(DATA_URL);
+  const [exposureData, setExposureData] = React.useState(
+    "http://localhost:8000/roads" + new Date().getDay() + ".geojson"
+  );
 
   const filteredData = AUM.features.filter(
     (feature) =>
@@ -155,7 +157,7 @@ export default function App({
         getIcon: () => "triangle",
         // sizeScale: 15,
         getPosition: (d) => d.geometry.coordinates,
-        getSize: 80,
+        getSize: 40,
         getColor: [255, 255, 0, 200],
         getLineColor: [0, 0, 0, 255],
         onClick: ({ object, x, y }) => {
