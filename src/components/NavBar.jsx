@@ -16,7 +16,6 @@ export default function NavBar({ searchTerm, setSearchTerm }) {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    // padding: '1rem',
     backgroundColor: "rgb(233, 191, 53)",
     boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
     zIndex: 10000,
